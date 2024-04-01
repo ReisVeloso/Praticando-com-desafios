@@ -1,45 +1,43 @@
-let numInicial = parseInt(1);
-let numFinal = parseInt(3);
-let listaNumSorteado = [];
-let userNumber = 2;
-let numeroSecreto = '';
+function sortear (){
+    numeroInicial = parseInt(document.querySelector('#de').value);
+    numeroFinal = parseInt(document.querySelector('#ate').value);
+    quantidadeNumeros = parseInt(document.querySelector('#quantidade').value);
 
+    let listaNumero = [];
 
-function clickSortear (){
-    geraNumSecreto();
-    compararNum();
-    console.log(`O número gerado foi ${numeroSecreto}`);
-}
-
-function geraNumSecreto (){
-    
-    let num = '';
-    if(listaNumSorteado.length < numFinal){ 
-        num = parseInt((Math.random() * numFinal )+ numInicial);
-        while(listaNumSorteado.includes(num)){
-            num = parseInt((Math.random() * numFinal )+ numInicial);
+    if(numeroInicial < numeroFinal && quantidadeNumeros <= (numeroFinal-(numeroInicial-1))){
+        for(let i = 0; i < quantidadeNumeros; i++){
+            numeroGerado = gerarNumero(numeroInicial, numeroFinal);
+            while(listaNumero.includes(numeroGerado)){
+                numeroGerado = gerarNumero(numeroInicial, numeroFinal);
+            }
+            listaNumero.push(numeroGerado);
         }
-
-        listaNumSorteado.push(num);
-        console.log(num);    
+        console.log(listaNumero);
+        modificarTela('#resposta', listaNumero);
+        document.querySelector('#btn-reiniciar').setAttribute('class','container__botao'); //Trocar atributo do button para ativo   
     }
     else{
-        console.log(`Fim de Jogo! ${listaNumSorteado}`);
+        reiniciar();
+        numeroInicial > numeroFinal? alert(`O atributo "Do número" deve ser menor do que o atributo "Até o número"`):alert(`Observe se a quantidade de números desejados cabem dentro do intervalo informado`);
     }
-
-    numeroSecreto = num;
-    return num;
+     
 }
 
+function gerarNumero(min, max){
+    let numeroGerado = Math.floor(Math.random()* (max - min +1))+min;
+    return numeroGerado;
+}
 
-function compararNum(){
-    if(numeroSecreto < userNumber){
-        console.log(` O número secreto é menor`);
-    }
-    else if(numeroSecreto < userNumber){
-        console.log(` O número secreto é maior`);
-    }
-    else{
-        console.log(`Você venceu!!!`);
-    }
+function modificarTela (idModificar, novotexto){
+    let telaDeResultado = document.querySelector(idModificar);
+    telaDeResultado.innerHTML = novotexto;
+}
+
+function reiniciar(){
+    document.querySelector('#quantidade').value = '';
+    document.querySelector('#de').value = '';
+    document.querySelector('#ate').value = '';
+    modificarTela('#resposta', 'Números sorteados:  nenhum até agora');
+    document.querySelector('#btn-reiniciar').setAttribute('class','container__botao-desabilitado');
 }
