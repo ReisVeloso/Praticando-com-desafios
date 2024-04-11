@@ -29,20 +29,16 @@ function adicionar(){
 
     //Adicionando objeto na lista de objetos Se produto já existir, modificar quantidade
 
+    let add = listaDeProdutos.filter((produtoFiltrado) => produtoFiltrado.nome === selectName);
 
-    let add = listaDeProdutos.filter((produtoFiltrado) => objteste(produtoFiltrado));
-    alert('p');
-    function adicionar(){
+    if(listaDeProdutos.length == 0 || add == 0){
         listaDeProdutos.push(copiaProduto);
     }
-    function modificar(){
-        alert('Modificar quantidade');
+    else{
+        console.log('Modificar quantidade');
     }
 
-    function objteste(prodFilt){
-        console.log(prodFilt);
-    }
-
+    
 
 }
 PeriodicWave
@@ -56,4 +52,5 @@ function mostrarNoCarrinho (){
         //console.log(produtoNaLista.valorUnidade);
     }
 }
+
 
