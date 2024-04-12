@@ -29,13 +29,14 @@ function adicionar(){
 
     //Adicionando objeto na lista de objetos Se produto já existir, modificar quantidade
 
-    let add = listaDeProdutos.filter((produtoFiltrado) => produtoFiltrado.nome === selectName);
+    let addProduto = listaDeProdutos.filter((produtoFiltrado, indice) => produtoFiltrado.nome === selectName);
 
-    if(listaDeProdutos.length == 0 || add == 0){
+    if(listaDeProdutos.length == 0 || addProduto == 0){
         listaDeProdutos.push(copiaProduto);
     }
     else{
-        console.log('Modificar quantidade');
+        var indexProdutos = listaDeProdutos.findIndex((indexProdLista) => indexProdLista.nome === copiaProduto.nome)
+        console.log(`Temos o ${addProduto[indexProdutos].nome} no index: ${indexProdutos}`);
     }
 
     
@@ -52,5 +53,3 @@ function mostrarNoCarrinho (){
         //console.log(produtoNaLista.valorUnidade);
     }
 }
-
-
