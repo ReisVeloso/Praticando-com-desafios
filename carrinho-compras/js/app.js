@@ -35,8 +35,8 @@ function adicionar(){
         listaDeProdutos.push(copiaProduto);
     }
     else{
-        var indexProdutos = listaDeProdutos.findIndex((indexProdLista) => indexProdLista.nome === copiaProduto.nome)
-        console.log(`Temos o ${addProduto[indexProdutos].nome} no index: ${indexProdutos}`);
+        var indexProdutos = listaDeProdutos.findIndex((produtoNaLista) => produtoNaLista.nome === copiaProduto.nome); //Qual o index do produto na lista principai que é equiparado ao produto que estou atuando (copia)
+        console.log(`Temos o ${addProduto[0].nome} no index: ${indexProdutos}`);
     }
 
     
