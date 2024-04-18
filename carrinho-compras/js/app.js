@@ -7,7 +7,6 @@ let produto = {
     valorTotal: 0,
 }
 
-
 function adicionar(){
     //Buscando valores do front
     let selectListaProdutos = document.getElementById('produto');// Entrando dentro da tag principal
@@ -26,7 +25,6 @@ function adicionar(){
     // Criando novo objeto independente (sem "linkar") e adicionando os valores nele, pois se adicionarmos o obj produto direto um link entre eles é criado e quando adicionamos a copia com os ... cria-se uma cópia independente
     let copiaProduto = {...produto}; //fazer o push dela
     
-
     //Adicionando objeto na lista de objetos Se produto já existir, modificar quantidade
 
     let addProduto = listaDeProdutos.filter((produtoFiltrado, indice) => produtoFiltrado.nome === selectName);
@@ -36,13 +34,14 @@ function adicionar(){
     }
     else{
         var indexProdutos = listaDeProdutos.findIndex((produtoNaLista) => produtoNaLista.nome === copiaProduto.nome); //Qual o index do produto na lista principai que é equiparado ao produto que estou atuando (copia)
-        console.log(`Temos o ${addProduto[0].nome} no index: ${indexProdutos}`);
+        let novaQuantidade = addProduto[0].quantidade = addProduto[0].quantidade + getQuantidade;
+        let mostrarItensTela = document.querySelector('.carrinho_produtos_produto');
+        
+        console.log(`Temos o ${addProduto[0].nome} no index: ${indexProdutos} -> Nova quantidade é ${novaQuantidade}`);
     }
 
-    
-
 }
-PeriodicWave
+//PeriodicWave
 
 function mostrarNoCarrinho (){
     
