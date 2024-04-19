@@ -48,3 +48,4 @@ function adicionar(){
     mostrarTela[3].textContent = `R$${listaDeProdutos[0].valorUnidade}`
 }
 
+// fazer loop
