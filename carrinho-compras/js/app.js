@@ -39,7 +39,8 @@ function adicionar(){
         var indexProdutos = listaDeProdutos.findIndex((produtoNaLista) => produtoNaLista.nome === copiaProduto.nome); //Qual o index do produto na lista principai que é equiparado ao produto que estou atuando (copia)
         let novaQuantidade = addProduto[0].quantidade = addProduto[0].quantidade + getQuantidade;
     }
-
+    
+    document.querySelector('#quantidade').value = 1;
     mostrarNaTela();
 }
 
@@ -69,5 +70,6 @@ function limpar(){
     let carrinhoLimpar = document.querySelector('#lista-produtos');
     carrinhoLimpar.innerHTML = '';
 
-    document.querySelector('.carrinho__total').innerHTML = ''; //Forma reduzida 
+    document.querySelector('.carrinho__total').innerHTML = `Total: <span class="texto-azul" id="valor-total">R$0</span>`; //Forma reduzida 
+    document.querySelector('#quantidade').value = 1;
 }
