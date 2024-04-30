@@ -1,4 +1,6 @@
 let listaDeProdutos = [];
+limpar();
+
 
 let produto = {
     nome: '',
@@ -22,6 +24,7 @@ function adicionar(){
     produto.valorUnidade = numericValue;
     produto.valorTotal = getQuantidade*numericValue;
 
+
     // Criando novo objeto independente (sem "linkar") e adicionando os valores nele, pois se adicionarmos o obj produto direto um link entre eles é criado e quando adicionamos a copia com os ... cria-se uma cópia independente
     let copiaProduto = {...produto}; //fazer o push dela
     
@@ -35,28 +38,36 @@ function adicionar(){
     else{
         var indexProdutos = listaDeProdutos.findIndex((produtoNaLista) => produtoNaLista.nome === copiaProduto.nome); //Qual o index do produto na lista principai que é equiparado ao produto que estou atuando (copia)
         let novaQuantidade = addProduto[0].quantidade = addProduto[0].quantidade + getQuantidade;
-        console.log(`Temos o ${addProduto[0].nome} no index: ${indexProdutos} -> Nova quantidade é ${novaQuantidade}`);
     }
+
     mostrarNaTela();
 }
 
 function mostrarNaTela (){
+    //Buscando e atualizando o valor total do carrinho
+    let buscarTotalCarrinho = document.querySelector('.carrinho__total');
+    let totaldoCarrinho = 0;
+    for(let i = 0; i< listaDeProdutos.length ; i++){
+        totaldoCarrinho = totaldoCarrinho + listaDeProdutos[i].valorUnidade*listaDeProdutos[i].quantidade;
+    }
+    buscarTotalCarrinho.innerHTML = `Total: <span class="texto-azul" id="valor-total">R$${totaldoCarrinho}</span>`;
+
+    //Buscando e atualizando a lista, lembrando que pegamos o id/class da tag de fora e atualizamos com o que tem dentro dela mas com nossas informações
+
     let carrinho = document.querySelector('#lista-produtos');
     carrinho.innerHTML = '';
     for(let i = 0; i<3 ;i++){
-        carrinho.innerHTML = carrinho.innerHTML + `<section class="carrinho__produtos__produto">
-        <span class="texto-azul">${listaDeProdutos[i].quantidade}x</span> ${listaDeProdutos[i].nome} <span class="texto-azul">${listaDeProdutos[i].valorUnidade*listaDeProdutos[0].quantidade}</span>
+        carrinho.innerHTML = carrinho.innerHTML + `\n<section class="carrinho__produtos__produto">
+        <span class="texto-azul">${listaDeProdutos[i].quantidade}x</span> ${listaDeProdutos[i].nome} 
+        <span class="texto-azul">R$ ${listaDeProdutos[i].valorUnidade*listaDeProdutos[i].quantidade}</span>
         </section>`
-    }     
+    }
 }
-
 
 function limpar(){
-    console.log('Limpando');
+    listaDeProdutos = [];
     let carrinhoLimpar = document.querySelector('#lista-produtos');
     carrinhoLimpar.innerHTML = '';
-}
 
-function calcTotal(){
-
+    document.querySelector('.carrinho__total').innerHTML = ''; //Forma reduzida 
 }
