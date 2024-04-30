@@ -4,7 +4,7 @@ let produto = {
     nome: '',
     quantidade: 0, 
     valorUnidade: 0,
-    valorTotal: 0,
+    valorTotal: this.quantidade * this.valorUnidade,
 }
 
 function adicionar(){
@@ -37,15 +37,28 @@ function adicionar(){
         let novaQuantidade = addProduto[0].quantidade = addProduto[0].quantidade + getQuantidade;
         console.log(`Temos o ${addProduto[0].nome} no index: ${indexProdutos} -> Nova quantidade é ${novaQuantidade}`);
     }
+    mostrarNaTela();
 
-    //Mostrar no carrinho
-    let mostrarTela = document.querySelector('#lista-produtos .carrinho__produtos__produto').childNodes; // Entra na tag pai (#lista-produtos) e desce na filha (.carrinho__produtos__produto)
-    // o .childNodes Pega as tags filhas (mas n pega as "netas") e deixa em forma de "lista", por isso usamos índices (olhar no inspecionar pra descobrir o index de cada uma) OBS importante: Pega as tags filhas mas não pega as Netas
    
-    //Colocar dentro de um loop e o "i" no lugar do zero
-    mostrarTela[1].textContent = `${listaDeProdutos[0].quantidade}x `
-    mostrarTela[2].textContent = `${listaDeProdutos[0].nome} `
-    mostrarTela[3].textContent = `R$${listaDeProdutos[0].valorUnidade}`
 }
 
 // fazer loop
+
+function mostrarNaTela (){
+    let listaMostrar = []
+
+    // o .childNodes Pega as tags filhas (mas n pega as "netas") e deixa em forma de "lista", por isso usamos índices (olhar no inspecionar pra descobrir o index de cada uma) OBS importante: Pega as tags filhas mas não pega as Netas
+    let mostrarTela = document.querySelector('#lista-produtos .carrinho__produtos__produto').childNodes; // Entra na tag pai (#lista-produtos) e desce na filha (.carrinho__produtos__produto)
+    
+    let mostrando = {
+    a: mostrarTela[1].textContent = `${listaDeProdutos[0].quantidade}x `,
+    b: mostrarTela[2].textContent = `${listaDeProdutos[0].nome} `,
+    c: mostrarTela[3].textContent = `R$${listaDeProdutos[0].valorUnidade*listaDeProdutos[0].quantidade}`,
+    }
+
+    let copx = {...mostrando};
+    listaMostrar.push(copx)
+    console.log(`OBS: ${listaMostrar}`);
+    
+    
+}
