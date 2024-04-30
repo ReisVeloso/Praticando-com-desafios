@@ -4,7 +4,7 @@ let produto = {
     nome: '',
     quantidade: 0, 
     valorUnidade: 0,
-    valorTotal: this.quantidade * this.valorUnidade,
+    valorTotal: 0,
 }
 
 function adicionar(){
@@ -38,27 +38,25 @@ function adicionar(){
         console.log(`Temos o ${addProduto[0].nome} no index: ${indexProdutos} -> Nova quantidade é ${novaQuantidade}`);
     }
     mostrarNaTela();
-
-   
 }
 
-// fazer loop
-
 function mostrarNaTela (){
-    let listaMostrar = []
+    let carrinho = document.querySelector('#lista-produtos');
+    carrinho.innerHTML = '';
+    for(let i = 0; i<3 ;i++){
+        carrinho.innerHTML = carrinho.innerHTML + `<section class="carrinho__produtos__produto">
+        <span class="texto-azul">${listaDeProdutos[i].quantidade}x</span> ${listaDeProdutos[i].nome} <span class="texto-azul">${listaDeProdutos[i].valorUnidade*listaDeProdutos[0].quantidade}</span>
+        </section>`
+    }     
+}
 
-    // o .childNodes Pega as tags filhas (mas n pega as "netas") e deixa em forma de "lista", por isso usamos índices (olhar no inspecionar pra descobrir o index de cada uma) OBS importante: Pega as tags filhas mas não pega as Netas
-    let mostrarTela = document.querySelector('#lista-produtos .carrinho__produtos__produto').childNodes; // Entra na tag pai (#lista-produtos) e desce na filha (.carrinho__produtos__produto)
-    
-    let mostrando = {
-    a: mostrarTela[1].textContent = `${listaDeProdutos[0].quantidade}x `,
-    b: mostrarTela[2].textContent = `${listaDeProdutos[0].nome} `,
-    c: mostrarTela[3].textContent = `R$${listaDeProdutos[0].valorUnidade*listaDeProdutos[0].quantidade}`,
-    }
 
-    let copx = {...mostrando};
-    listaMostrar.push(copx)
-    console.log(`OBS: ${listaMostrar}`);
-    
-    
+function limpar(){
+    console.log('Limpando');
+    let carrinhoLimpar = document.querySelector('#lista-produtos');
+    carrinhoLimpar.innerHTML = '';
+}
+
+function calcTotal(){
+
 }
