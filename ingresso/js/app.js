@@ -2,9 +2,6 @@ let pista = parseInt(document.querySelector('.lista #qtd-pista').textContent);
 let CadeiraSuperior = parseInt(document.querySelector('.lista #qtd-superior').textContent);
 let cadeiraInferior = parseInt(document.querySelector('.lista #qtd-inferior').textContent);
 
-alert(typeof(CadeiraSuperior));
-alert(CadeiraSuperior)
-
 function comprar(){
     let tipoDeEntrada = document.getElementById("tipo-ingresso").value;
     let qtd = document.getElementById('qtd').value;
