@@ -1,9 +1,12 @@
 let amigosParticipantes = []
 
 function adicionar(){
-    let nomeInput = document.getElementById('nome-amigo').value.toUpperCase(); //Busca valor do input
+    let nomeInput = document.getElementById('nome-amigo').value.toUpperCase().trim(); //Busca valor do input o trim é para eliminar espaços vazios
     if(amigosParticipantes.includes(nomeInput)){
         alert('Nome repetido');
+    }
+    else if(nomeInput == '' ){
+        alert('Nome vazio, gentileza adicionar um nome válido');
     }
     else{
         amigosParticipantes.push(nomeInput); //adiciona input à lista
@@ -13,30 +16,22 @@ function adicionar(){
 }
 
 function sortear(){
-    if(amigosParticipantes.length %2 === 0){
+
+    if(amigosParticipantes.length <= 3){
+        alert('Adicione mais participantes para deixar o jogo mais legal !!!');
+    }
+    else{
         let nomesFront = document.querySelector('.prizeDraw__container');
         let amigosEmbaralhados = amigosParticipantes.sort(() => Math.random() - 0.5);
     
-        let duplas = [];
-        let cont = 0;
-        for (let i = 0; i < (amigosEmbaralhados.length); i++){//4
-      
-            if (cont <= 1){
-                duplas.push(amigosEmbaralhados[i])
-                if(duplas.length == 2){
-                    let duplasFormatadas = duplas.join(' -> '); //O . join substitui o separador "," por " -> " Faça um alert da lista duplasformatadas p ver
-                    nomesFront.innerHTML =nomesFront.innerHTML + `<p id="lista-sorteio">${duplasFormatadas}</p>`;
-                    duplas = [];
-                    cont = 0;
-                }
-                else{
-                    cont++;
-                }
-            } 
+        for (let i = 0; i < (amigosEmbaralhados.length); i++){
+            if((amigosEmbaralhados.length -1) == i){
+                nomesFront.innerHTML = nomesFront.innerHTML + `<p id="lista-sorteio">${amigosEmbaralhados[i]} --> ${amigosEmbaralhados[0]}</p>`;
+            }
+            else{
+                nomesFront.innerHTML = nomesFront.innerHTML + `<p id="lista-sorteio">${amigosEmbaralhados[i]} --> ${amigosEmbaralhados[i+1]}</p>`;
+            }
         }
-    }
-    else{
-        alert('Adicione mais um membro para termos um número par de participantes');
     }
 }
 
@@ -45,10 +40,3 @@ function reiniciar(){
     document.querySelector('.prizeDraw__container').textContent = '';
     document.querySelector('.friends__container').innerHTML = `<p id="lista-amigos"></p>`;
 }
-
-
-function validacoes(){
-    
-}
-
-//Validar se existe número par de participantes e alertar
